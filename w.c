@@ -18,7 +18,7 @@ cd existing_folder
 git init
 git remote add origin git@gitlab.com:adammajewski/wake_gmp.git
 git add .
-git commit
+git commit -m ""
 git push -u origin master
 -------------------------------
 
@@ -56,7 +56,7 @@ git push -u origin master
 
 /*
 
-Consider the example of 3/7. Label the components counterclockwise from
+"Consider the example of 3/7. Label the components counterclockwise from
 0 to 6. The critical value is in position 3, and the number is always
 increased by 3 modulo 7.  This gives  3625140.  Now the next to last
 component 4 contains the angle 1/2,  so it is separating the digits 0
@@ -71,12 +71,14 @@ Note the number of the next-to-last position can be computed directly as
 7 - 3 = 4.
 
 In the implementation I have done the same thing with iterating
-backwards for some reason ...
+backwards for some reason ..."
 
-  Best regards,  happy new year,
+"The algorithm is probably well-known,  maybe it is in Bruin-Schleicher or
+in Douady angles ... or if no one has written it down,  certainly many people
+have found it by drawing the petals and numbering them ..."
 
-  Wolf
 
+ 
 
 
 
@@ -103,6 +105,31 @@ unsigned long long int wake(int k, int r, unsigned long long int  &n)
    
    return d;
 }
+
+
+
+mndcombi.cpp  by Wolf Jung (C) 2007-2015.   part of Mandel 5.13
+
+qulonglong mndAngle::wake(int k, int r, qulonglong &n)
+{  //bonds check for int type
+   if (k <= 0 || k >= r || r > 64) return 0LL;
+
+   // n 
+   qulonglong d = 1LL; 
+   int j, s = 0; n = 1LL;
+   for (j = 1; j < r; j++)
+   {  s -= k; if (s < 0) s += r; if (!s) return 0LL;
+      if (s > r - k) n += d << j;
+   }
+
+   // d = 
+   d <<= (r - 1); 
+   d--; 
+   d <<= 1; 
+   d++; //2^r - 1 for r <= 64
+   return d;
+}
+
 
 
  ULLONG_MAX
