@@ -1,17 +1,7 @@
 /* 
 
 
- 
-This is not official program by W Jung,
-but it usess his code ( I hope in a good way)
-   These functions are part of Mandel 5.9 by Wolf Jung (C) 2007-2013,
-   which is free software; you can
-   redistribute and / or modify them under the terms of the GNU General
-   Public License as published by the Free Software Foundation; either
-   version 3, or (at your option) any later version. In short: there is
-   no warranty of any kind; you must redistribute the source code as well.
-   
-   http://www.mndynamics.com/indexp.html
+
 
 ------- Git -----------------
 cd existing_folder
@@ -53,110 +43,6 @@ git push -u origin master
 
 
 
-
-/*
-
-"Consider the example of 3/7. Label the components counterclockwise from
-0 to 6. The critical value is in position 3, and the number is always
-increased by 3 modulo 7.  This gives  3625140.  Now the next to last
-component 4 contains the angle 1/2,  so it is separating the digits 0
-and 1.  The algorithm says that positions <= 4 have digit 0 and numbers
-0 or > 4 have digit 1:
-3625140
-0101001
-So it is 41/127.  The first angle is always ending on 01 and the second
-angle is 1 more, so ending on 10.
-
-Note the number of the next-to-last position can be computed directly as
-7 - 3 = 4.
-
-In the implementation I have done the same thing with iterating
-backwards for some reason ..."
-
-"The algorithm is probably well-known,  maybe it is in Bruin-Schleicher or
-in Douady angles ... or if no one has written it down,  certainly many people
-have found it by drawing the petals and numbering them ..."
-
-Comments by Wolf Jung
-
- 
-
-
-
- type qulonglong  = unsigned long long int 
- n is a numerator of external angle that land on root point of the wake k/r
- d is a denominator 
- funcion mndAngle::wake from mndcombi.cpp  by Wolf Jung (C) 2007-2013
-
-unsigned long long int wake(int k, int r, unsigned long long int  &n)
-{  
-   if (k <= 0 || k >= r || r > 64) return 0LL; // 
-   unsigned long long int  d = 1LL; int j, s = 0; n = 1LL;
-   
-   for (j = 1; j < r; j++)
-   {  s -= k; 
-      if (s < 0) s += r;  // https://zasobygwp.pl/redirect?sig=20cc5fd3596d87ac6c59f59c2e45e2cf0c8dc92c4a9d5796d2f010036d98632d&url=aHR0cDovL3N0YWNrb3ZlcmZsb3cuY29tL3F1ZXN0aW9ucy8xMTE0MDkzNS9jaGVjay1pZi11bnNpZ25lZC1pcy1sZXNzLXRoYW4temVybw==
-      if (!s) return 0LL;
-      if (s > r - k) n += d << j;
-   }
-   d <<= (r - 1); 
-   d--; 
-   d <<= 1; 
-   d++; //2^r - 1 for r <= 64
-   
-   return d;
-}
-
-
-
-mndcombi.cpp  by Wolf Jung (C) 2007-2015.   part of Mandel 5.13
-
-qulonglong mndAngle::wake(int k, int r, qulonglong &n)
-{  //bonds check for int type
-   if (k <= 0 || k >= r || r > 64) return 0LL;
-
-   // n 
-   qulonglong d = 1LL; 
-   int j, s = 0; n = 1LL;
-   for (j = 1; j < r; j++)
-   {  s -= k; if (s < 0) s += r; if (!s) return 0LL;
-      if (s > r - k) n += d << j;
-   }
-
-   // d = 
-   d <<= (r - 1); 
-   d--; 
-   d <<= 1; 
-   d++; //2^r - 1 for r <= 64
-   return d;
-}
-
-
-
- ULLONG_MAX
-*/
-
-
-// input internal angle in turns = n/d
-// output = numerator of external angle = num
-unsigned long long int GiveNum(unsigned long long int n, unsigned long long int d)
-{  
-   unsigned long long int num = 1LL;
-   unsigned long long int  f = 1LL; 
-   long long int j, s = 0; 
-
-
-      
-   for (j = 1; j < d; j++)
-   {  s -= n; 
-      if (s < 0) s += d; 
-      if (!s) return 0LL; // ?
-      if (s > d - n) 
-            num += f << j; // The result is equivalent to multiplying the integer by a power of two.
-   }
-   return num;
-   
-}
 
 
  // rotation map 
