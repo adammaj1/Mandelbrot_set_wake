@@ -286,7 +286,7 @@ int main ()
         char  *sExternalAngle;
 
         int base = 10;
-        char *sIntenalAngle = "13/34";
+        char *sIntenalAngle = "34/89";
         mpq_t qInternalAngle;   // internal angle = rational number q = n/d
         mpz_t den;  
     
