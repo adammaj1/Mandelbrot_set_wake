@@ -165,41 +165,63 @@ void mpq_wake(mpq_t rop, mpq_t op)
 
 int main ()
 {
+
+         // notation : 
+        //number type : s = string ; q = rational ; z = integer, f = floating point
+        // base : b = binary ; d = decimal 
+
+
         
+        char *sqdInternalAngle = "1/7";
+        mpq_t qdInternalAngle;   // internal angle = rational number q = n/d
+        mpz_t den;  
         
        
-        mpq_t  qExternalAngle;   // rational number q = n/d
-        char  *sExternalAngle;
+        mpq_t  qdExternalAngle;   // rational number q = n/d
+        char  *sqbExternalAngle;
+        mpf_t  fd ;
+        char  *sfb;
+        mp_exp_t exponent ; // holds the exponent for the result string
 
-        int base = 10;
-        char *sIntenalAngle = "34/89";
-        mpq_t qInternalAngle;   // internal angle = rational number q = n/d
-        mpz_t den;  
+       
+
+        
     
 
         // init variables 
+        mpf_init(fd);
         mpz_init(den);
-        mpq_inits (qExternalAngle, qInternalAngle, NULL); //
+        mpq_inits (qdExternalAngle, qdInternalAngle, NULL); //
 
         // set variables
-        mpq_set_str(qInternalAngle, sIntenalAngle, base); // string is an internal angle
-        mpq_canonicalize (qInternalAngle); // It is the responsibility of the user to canonicalize the assigned variable before any arithmetic operations are performed on that variable.
-        mpq_get_den(den,qInternalAngle); 
+        mpq_set_str(qdInternalAngle, sqdInternalAngle, 10); // string is an internal angle
+        mpq_canonicalize (qdInternalAngle); // It is the responsibility of the user to canonicalize the assigned variable before any arithmetic operations are performed on that variable.
+        mpq_get_den(den,qdInternalAngle); 
         
-        mpq_wake(qExternalAngle, qInternalAngle); // internal -> external    
+        mpq_wake(qdExternalAngle, qdInternalAngle); // internal -> external 
+        mpf_set_q(fd,qdExternalAngle); // qd -> fd
+
+
+  
        // convertions
-        sExternalAngle = mpq_get_str (NULL, 2, qExternalAngle); // rational number = fraction : from decimal to binary
+        sqbExternalAngle = mpq_get_str (NULL, 2, qdExternalAngle); // rational number = fraction : from decimal to binary
         
         
+        sfb = mpf_get_str (NULL, &exponent, 2, 0, fd); // floating point number : from decimal fd to binary floating point string sfb
+        //  If n_digits is 0 then that accurate maximum number of digits are generated. 
+
+
+
         // print
-        gmp_printf ("internal angle = %Qd\n", qInternalAngle); // 
+        gmp_printf ("internal angle = %Qd\n", qdInternalAngle); // 
         gmp_printf ("period = denominator of internal angle = %Zd\n", den); // 
-        gmp_printf ("external angle as a decimal fraction = %Qd\n", qExternalAngle); // 
-        gmp_printf ("external angle as a binary rational (string) : %s \n", sExternalAngle); // 
-   
+        gmp_printf ("external angle as a decimal fraction = %Qd\n", qdExternalAngle); // 
+        gmp_printf ("external angle as a binary rational (string) : %s \n", sqbExternalAngle); // 
+        printf ("external angle as a binary floating number in exponential form =0.%s*%d^%ld\n", sfb, 2, exponent); 
         
         // clear memory
-        mpq_clears(qExternalAngle, qInternalAngle, NULL);
+        mpf_clear(fd);
+        mpq_clears(qdExternalAngle, qdInternalAngle, NULL);
         mpz_clear(den);
         
         
