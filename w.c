@@ -16,13 +16,13 @@ git push -u origin master
 
 
 
-
+?? http://stackoverflow.com/questions/2380415/how-to-cut-a-mpz-t-into-two-parts-using-gmp-lib-on-c
 
 
 
    
    to compile from console:
-   gcc w.c -lgmp -Wall
+   gcc w.c -lgmp -lmpfr -Wall
 
     to run from console : 
 
@@ -31,15 +31,28 @@ git push -u origin master
    tested on Ubuntu 14.04 LTS
 
 
+uiIADenominator = 89 
+Using MPFR-3.1.2-p3 with GMP-5.1.3 with precision = 200 bits 
+internal angle = 34/89
+first external angle : 
+period = denominator of internal angle = 89
+external angle as a decimal fraction = 179622968672387565806504265/618970019642690137449562111 = 179622968672387565806504265 /( 2^89 - 1) 
+External Angle as a floating point decimal number =  2.9019655713870868535821260055542440298749779423213948304299730531995503353103626302473331181359966368582651105245850405837027542373052381532777325121338632071561064451614697645709384232759475708007812e-1
+external angle as a binary rational (string) : 1001010010010100101001001010010010100101001001010010100100101001001010010100100101001001/11111111111111111111111111111111111111111111111111111111111111111111111111111111111111111 
+external angle as a binary floating number in exponential form =0.10010100100101001010010010100100101001010010010100101001001010010010100101001001010010010100101001001010010100100101001001010010100100101001010010010100100101001010010010100100101001010010010100101001*2^-1
+external angle as a binary floating number in periodic form =0.(01001010010010100101001001010010010100101001001010010100100101001001010010100100101001001)
+
+                                                             .(01001010010010100101001001010010010100101001001010010100100101001001010010100100101001001)
+
 */
 
 
 
 
-
+#include <stdlib.h> // malloc
 #include <stdio.h>
-#include <gmp.h>
-
+#include <gmp.h>  // for rational numbers 
+#include <mpfr.h> // for floating point mumbers
 
 
 
@@ -127,11 +140,11 @@ void mpq_wake(mpq_t rop, mpq_t op)
           mpz_ui_pow_ui(m, 2, id-i-1); // m = 2^(id-i   )
           mpz_add(num, num, m); // num = num + m
           if (mpz_cmp(num, den) >0) mpz_mod( num, num, den); // num = num % d ; if num==d gives 0
-          gmp_printf("s = 1");
+          //gmp_printf("s = 1");
 
            }
-         else gmp_printf("s = 0");
-       gmp_printf (" i = %ld internal angle = %Zd / %Zd ea = %Zd / %Zd ; m = %Zd \n", i, n, d, num, den, m);    
+        // else gmp_printf("s = 0");
+       //gmp_printf (" i = %ld internal angle = %Zd / %Zd ea = %Zd / %Zd ; m = %Zd \n", i, n, d, num, den, m);    
 
         // n = (n + n0 ) % d = rotation 
        mpz_add(n, n, n0); 
@@ -160,11 +173,43 @@ void mpq_wake(mpq_t rop, mpq_t op)
 
 }
 
+/*
+
+
+http://stackoverflow.com/questions/9895216/remove-character-from-string-in-c
+
+"The idea is to keep a separate read and write pointers (pr for reading and pw for writing), 
+always advance the reading pointer, and advance the writing pointer only when it's not pointing to a given character."
+
+modified 
+
+
+
+ remove first length2rmv chars and after that take only length2stay chars from input string
+ output = input string 
+*/
+void extract_str(char* str, unsigned int length2rmv, unsigned long int length2stay) {
+    // separate read and write pointers 
+    char *pr = str; // read pointer
+    char *pw = str; // write pointer
+    int i =0; // index
+
+    while (*pr) {
+        if (i>length2rmv-1 && i <length2rmv+length2stay)
+          pw += 1; // advance the writing pointer only when 
+        pr += 1;  // always advance the reading pointer
+        *pw = *pr;    
+        i +=1;
+    }
+    *pw = '\0';
+}
 
 
 
 int main ()
-{
+{	
+
+	
 
          // notation : 
         //number type : s = string ; q = rational ; z = integer, f = floating point
@@ -172,59 +217,108 @@ int main ()
 
 
         
-        char *sqdInternalAngle = "1/7";
+        char *sqdInternalAngle = "13/34";
         mpq_t qdInternalAngle;   // internal angle = rational number q = n/d
         mpz_t den;  
+        unsigned long int uiIADenominator;
         
        
         mpq_t  qdExternalAngle;   // rational number q = n/d
         char  *sqbExternalAngle;
-        mpf_t  fd ;
-        char  *sfb;
+        mpfr_t  fdExternalAngle ;  // 
+        char  *sfbExternalAngle; // 
+        
         mp_exp_t exponent ; // holds the exponent for the result string
-
-       
-
+        mpz_t zdEANumerator;
+        mpz_t zdEADenominator;
+        mpfr_t EANumerator;
+        mpfr_t EADenominator;
+        mpfr_prec_t p = 200; // in bits , should be > denominator of internal angle 
         
     
 
+         mpfr_set_default_prec (p); // but previously initialized variables are unaffected.
+        //mpfr_set_default_prec (precision);
+
         // init variables 
-        mpf_init(fd);
-        mpz_init(den);
+        //mpf_init(fdExternalAngle);
+        mpz_inits(den, zdEANumerator,zdEADenominator, NULL);
         mpq_inits (qdExternalAngle, qdInternalAngle, NULL); //
+        mpfr_inits(fdExternalAngle, EANumerator, EADenominator, NULL);
+        
 
         // set variables
         mpq_set_str(qdInternalAngle, sqdInternalAngle, 10); // string is an internal angle
         mpq_canonicalize (qdInternalAngle); // It is the responsibility of the user to canonicalize the assigned variable before any arithmetic operations are performed on that variable.
         mpq_get_den(den,qdInternalAngle); 
+        uiIADenominator = mpz_get_ui(den);
+        printf("uiIADenominator = %lu \n", uiIADenominator);
         
-        mpq_wake(qdExternalAngle, qdInternalAngle); // internal -> external 
-        mpf_set_q(fd,qdExternalAngle); // qd -> fd
 
+        if ( p < uiIADenominator) printf("increase precision !!!!\n");         
+        mpfr_printf("Using MPFR-%s with GMP-%s with precision = %u bits \n", mpfr_version, gmp_version, (unsigned int) p);
+
+
+
+
+
+
+        //        
+        mpq_wake(qdExternalAngle, qdInternalAngle); // internal -> external 
+        
 
   
-       // convertions
+
+
+        mpq_get_num(zdEANumerator  ,qdExternalAngle);
+        mpq_get_den(zdEADenominator,qdExternalAngle); 
+        // conversions
+        mpfr_set_z (EANumerator,   zdEANumerator,   GMP_RNDN);
+        mpfr_set_z (EADenominator, zdEADenominator, GMP_RNDN);
+
+        
+
         sqbExternalAngle = mpq_get_str (NULL, 2, qdExternalAngle); // rational number = fraction : from decimal to binary
         
+        mpfr_div (fdExternalAngle, EANumerator, EADenominator, GMP_RNDN);
         
-        sfb = mpf_get_str (NULL, &exponent, 2, 0, fd); // floating point number : from decimal fd to binary floating point string sfb
-        //  If n_digits is 0 then that accurate maximum number of digits are generated. 
+        
+        
+        
 
 
+        sfbExternalAngle = (char*)malloc((sizeof(char) * uiIADenominator*2*4) + 3);
+        // mpfr_get_str (char *str, mpfr_exp_t *expptr, int b, size_t n, mpfr_t op, mpfr_rnd_t rnd)
+        if (sfbExternalAngle==NULL ) {printf("sfbExternalAngle error \n"); return 1;}
+        mpfr_get_str(sfbExternalAngle, &exponent, 2,200, fdExternalAngle, GMP_RNDN);
 
         // print
         gmp_printf ("internal angle = %Qd\n", qdInternalAngle); // 
+        printf("first external angle : \n");
         gmp_printf ("period = denominator of internal angle = %Zd\n", den); // 
-        gmp_printf ("external angle as a decimal fraction = %Qd\n", qdExternalAngle); // 
+
+        gmp_printf ("external angle as a decimal fraction = %Qd = %Zd /( 2^%Zd - 1) \n", qdExternalAngle, zdEANumerator, den); // 
+        printf ("External Angle as a floating point decimal number =  ");
+        mpfr_out_str (stdout, 10, p, fdExternalAngle, MPFR_RNDD); putchar ('\n');
         gmp_printf ("external angle as a binary rational (string) : %s \n", sqbExternalAngle); // 
-        printf ("external angle as a binary floating number in exponential form =0.%s*%d^%ld\n", sfb, 2, exponent); 
         
+        printf ("external angle as a binary floating number in exponential form =0.%s*%d^%ld\n", sfbExternalAngle, 2, exponent); 
+        extract_str(sfbExternalAngle,  uiIADenominator+exponent, uiIADenominator); 
+        printf ("external angle as a binary floating number in periodic form =0.(%s)\n", sfbExternalAngle); 
+       
+
+
+
+         
+
+
         // clear memory
-        mpf_clear(fd);
+        //mpf_clear(fdExternalAngle);
         mpq_clears(qdExternalAngle, qdInternalAngle, NULL);
-        mpz_clear(den);
-        
-        
+        mpz_clears(den, zdEANumerator, zdEADenominator, NULL);
+        mpfr_clears(fdExternalAngle, EANumerator, EADenominator, NULL);
+        free(sfbExternalAngle);        
+
         return 0;
 }
 
