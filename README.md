@@ -154,13 +154,22 @@ k/r = 1/63	wake 1 ; 2/9223372036854775807	unsigned integer overflow
 
 # binary left shit map
 
+[Shift map](https://en.wikibooks.org/wiki/Fractals/Iterations_in_the_complex_plane/def_cqp#Shift_map): binary left $`\sigma^n( s )`$ is shifting s string n places left 
+
+where:
+* n  is a number of digits ( places)
+* s is an infinite binary string
+* 
+
+
+
 ```math
-\sigma^0( s ) = \sigma^0(00001)  =   {\color{Red}00001}   
-\sigma^1( s ) = \sigma^1(00001)  =   00010   
-\sigma^2( s ) = \sigma^2(00001)  =   00100   
-\sigma^3( s ) = \sigma^3(00001)  =   01000   
-\sigma^4( s ) = \sigma^4(00001)  =   10000  
-\sigma^5( s ) = \sigma^5(00001)  =   {\color{Red}00001} 
+\sigma^0( s ) = \sigma^0(00001)  =   00001\\ 
+\sigma^1( s ) = \sigma^1(00001)  =   00010\\ 
+\sigma^2( s ) = \sigma^2(00001)  =   00100\\ 
+\sigma^3( s ) = \sigma^3(00001)  =   01000\\ 
+\sigma^4( s ) = \sigma^4(00001)  =   10000\\
+\sigma^5( s ) = \sigma^5(00001)  =   00001 
 ```
 
 ```bash
