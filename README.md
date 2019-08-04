@@ -11,7 +11,9 @@
 * [f.c](f.c) - Farey parents using int in c 
 * [a list of Farye parents up to 100](farey_parents100.txt)
 * [ft.c](ft.c) - c program for creating a list of values {p,q,b} for testing shift map
-* [fp30.txt](fp30.txt) - result of [ft.c](ft.c), it will be used by another program 
+* [fp30.txt](fp30.txt) - result of [ft.c](ft.c), it will be used by another program [t.c](t.c)
+* [t.c](t.c) - c program for computing angles of the external rays of Misiurewicz points, only in symbolic form
+* [mis30.txt](mis30.txt) - result of [t.c](t.c) = angles of the external rays of Misiurewicz points, only in symbolic form
 * [s.c](s.c) - binare left shift map  in c 
 
 
@@ -308,7 +310,107 @@ sOut	 0000000000000100000000000 	 5
 sOut	 0000000000100000000000000 	 5
 ```
 
+# Angles of externla rays landing on the Misiurewicz points
 
+Algorithm is based on the Theorem 5.3 in: [Geometry of the Antennas in the Mandelbrot Set by R L Devaney and M Moreno-Rocha, April 11, 2000](http://math.bu.edu/people/bob/papers/monica.pdf)  
+
+See also:
+*  [https://mathr.co.uk/blog/2013-02-01_navigating_by_spokes_in_the_mandelbrot_set.html](Navigating by spokes in the Mandelbrot set) by Claude Heiland-Allen
+* [wikibooks](https://en.wikibooks.org/wiki/Fractals/Iterations_in_the_complex_plane/p_misiurewicz)
+
+
+
+Files
+* [t.c](t.c) - c program for computing angles of the external rays of Misiurewicz points, only in symbolic form
+* [mis30.txt](mis30.txt) - result of [t.c](t.c) = angles of the external rays of Misiurewicz points, only in symbolic form
+
+
+```bash
+======================================================
+p/q = 1/2	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s+s-
+==========================================
+
+p/q = 1/3	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s-d^1(s+)
+j = 2	s+s-
+==========================================
+
+p/q = 2/3	b=2
+
+j = 0	s-d^0(s+)
+j = 1	s+d^2(s+)
+j = 2	s+s-
+==========================================
+
+p/q = 1/4	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s-d^1(s+)
+j = 2	s-d^2(s+)
+j = 3	s+s-
+==========================================
+
+p/q = 3/4	b=3
+
+j = 0	s-d^0(s+)
+j = 1	s+d^3(s+)
+j = 2	s+d^6(s+)
+j = 3	s+s-
+==========================================
+
+p/q = 1/5	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s-d^1(s+)
+j = 2	s-d^2(s+)
+j = 3	s-d^3(s+)
+j = 4	s+s-
+==========================================
+
+p/q = 2/5	b=3
+
+j = 0	s-d^0(s+)
+j = 1	s-d^3(s+)
+j = 2	s-d^6(s+)
+j = 3	s+d^9(s+)
+j = 4	s+s-
+==========================================
+
+p/q = 3/5	b=2
+
+j = 0	s-d^0(s+)
+j = 1	s-d^2(s+)
+j = 2	s+d^4(s+)
+j = 3	s+d^6(s+)
+j = 4	s+s-
+==========================================
+
+p/q = 4/5	b=4
+
+j = 0	s-d^0(s+)
+j = 1	s+d^4(s+)
+j = 2	s+d^8(s+)
+j = 3	s+d^12(s+)
+j = 4	s+s-
+==========================================
+
+p/q = 1/6	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s-d^1(s+)
+j = 2	s-d^2(s+)
+j = 3	s-d^3(s+)
+j = 4	s-d^4(s+)
+j = 5	s+s-
+==========================================
+
+
+```
 
 # License
 
