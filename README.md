@@ -10,6 +10,8 @@
 * [p.cpp](p.cpp)
 * [f.c](f.c) - Farey parents using int in c 
 * [a list of Farye parents up to 100](farey_parents100.txt)
+* [ft.c](ft.c) - c program for creating a list of values {p,q,b} for testing shift map
+* [fp30.txt](fp30.txt) - result of [ft.c](ft.c), it will be used by another program 
 * [s.c](s.c) - binare left shift map  in c 
 
 
