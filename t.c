@@ -1,56 +1,28 @@
 /*
+
+gcc t.c -Wall
+./a.out > mis30a.txt
+
+
 http://math.bu.edu/people/bob/papers/monica.pdf
 
 Algorithm is based on the Theorem 5.3 in: Geometry of the Antennas in the Mandelbrot Set by R L Devaney and M Moreno-Rocha, April 11, 2000[6]
+--------
+~/c/string/shift/preper/p1/test/t5$ 
+
 
 =======
+p/q = 1/2	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s+s-
+==========================================
 
 p/q = 1/3	b=1
 
 j = 0	s-d^0(s+)
 j = 1	s-d^1(s+)
 j = 2	s+s-
-
-==========================================
-
-p/q = 1/4	b=1
-
-j = 0	s-d^0(s+)
-j = 1	s-d^1(s+)
-j = 2	s-d^2(s+)
-j = 3	s+s-
-
-
-==========================================
-
-
-p/q = 2/5	b=3
-
-j = 0	s-d^0(s+)
-j = 1	s-d^3(s+)
-j = 2	s-d^6(s+)
-j = 3	s+d^9(s+)
-j = 4	s+s-
-==========================================
-
-p/q = 3/8	b=3
-
-j = 0	s-d^0(s+)
-j = 1	s-d^3(s+)
-j = 2	s-d^6(s+)
-j = 3	s-d^9(s+)
-j = 4	s-d^12(s+)
-j = 5	s+d^15(s+)
-j = 6	s+d^18(s+)
-j = 7	s+s-
-==========================================
-
-p/q = 3/4	b=3
-
-j = 0	s-d^0(s+)
-j = 1	s+d^3(s+)
-j = 2	s+d^6(s+)
-j = 3	s+s-
 ==========================================
 
 p/q = 2/3	b=2
@@ -59,6 +31,59 @@ j = 0	s-d^0(s+)
 j = 1	s+d^2(s+)
 j = 2	s+s-
 ==========================================
+
+p/q = 1/4	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s-d^1(s+)
+j = 2	s-d^2(s+)
+j = 3	s+s-
+==========================================
+
+p/q = 3/4	b=3
+
+j = 0	s-d^0(s+)
+j = 1	s+d^3(s+)
+j = 2	s+d^2(s+)
+j = 3	s+s-
+==========================================
+
+p/q = 1/5	b=1
+
+j = 0	s-d^0(s+)
+j = 1	s-d^1(s+)
+j = 2	s-d^2(s+)
+j = 3	s-d^3(s+)
+j = 4	s+s-
+==========================================
+
+p/q = 2/5	b=3
+
+j = 0	s-d^0(s+)
+j = 1	s-d^3(s+)
+j = 2	s-d^1(s+)
+j = 3	s+d^4(s+)
+j = 4	s+s-
+==========================================
+
+p/q = 3/5	b=2
+
+j = 0	s-d^0(s+)
+j = 1	s-d^2(s+)
+j = 2	s+d^4(s+)
+j = 3	s+d^1(s+)
+j = 4	s+s-
+==========================================
+
+p/q = 4/5	b=4
+
+j = 0	s-d^0(s+)
+j = 1	s+d^4(s+)
+j = 2	s+d^3(s+)
+j = 3	s+d^2(s+)
+j = 4	s+s-
+==========================================
+
 
 p/q = 1/31	b=1
 
@@ -392,7 +417,7 @@ int tt[][3] = {
 };
 
 
-
+// symbolic angles 
 int PrintRays(int t[3]){
 
 	
@@ -403,17 +428,22 @@ int PrintRays(int t[3]){
 	int j;
 	
 	printf("p/q = %d/%d\tb=%d\n\n", p, q, b); // input 
-	for (j = 0; j< q-1; j++){ // there are q rays ( from 0 to q-1)
+	
+	printf("(s-)\n"); // first wake ray
+	printf("s-(s+)\n"); // first Misiurewicz ray
+	
+	for (j = 1; j< q-1; j++){ // there are q rays ( from 0 to q-1) but only (q-2) has to be computed
 		
-		n = j*b;
-		printf("j = %d\t",j);
+		n = (j*b) % q;
+		
 		if (j< q-p) 
-			{printf("s-d^%d(s+)\n", n);}
-			else printf("s+d^%d(s+)\n", n);
+			{printf("s-(d^%d(s+))\n", n);}
+			else printf("s+(d^%d(s+))\n", n);
 		
 	
 	}
-	printf("j = %d\ts+s-\n",j); 
+	printf("s+(s-)\n"); // last Misiurewicz ray
+	printf("(s+)\n"); // last wake ray
 	printf("==========================================\n\n");
 
 	return 0;
