@@ -15,7 +15,7 @@
 * [t.c](t.c) - c program for computing angles of the external rays of Misiurewicz points, only in symbolic form
 * [mis30.txt](mis30.txt) - result of [t.c](t.c) = angles of the external rays of Misiurewicz points, only in symbolic form
 * [s.c](s.c) - binare left shift map  in c 
-
+* [prep.c](prep.c) - c program for computing q angles rays landing on th eprincipal Misurewicz point of the wake p/q
 
 
 # angles of the wake using c and GMP
@@ -310,7 +310,7 @@ sOut	 0000000000000100000000000 	 5
 sOut	 0000000000100000000000000 	 5
 ```
 
-# Angles of externla rays landing on the Misiurewicz points
+# Angles ( in the symbolic form) of external rays landing on the principal Misiurewicz points of wake p/q 
 
 Algorithm is based on the Theorem 5.3 in: [Geometry of the Antennas in the Mandelbrot Set by R L Devaney and M Moreno-Rocha, April 11, 2000](http://math.bu.edu/people/bob/papers/monica.pdf)  
 
@@ -420,6 +420,38 @@ s+(s-)
 (s+)
 ==========================================
 ```
+
+# Angles ( in the binary form) of external rays landing on the principal Misiurewicz points of wake p/q 
+
+```bash
+======================
+
+p/q = 2/5	b=3
+
+(01001)	 lower wake = S-
+01001(01010)
+01001(10010)
+01001(10100)
+01010(00101)
+01010(01001)
+(01010)	 = S+ = higher wake 
+
+========================
+p/q = 1/4	b=1
+
+(0001)	 lower wake = S-
+0001(0010)
+0001(0100)
+0001(1000)
+0010(0001)
+(0010)	 = S+ = higher wake 
+
+===================
+
+
+```
+
+
 
 # License
 
