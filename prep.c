@@ -3,6 +3,12 @@
 gcc prep.c -Wall
 ./a.out
 
+----------
+~/c/string/shift/preper/p5
+
+
+
+
 ======================
 
 p/q = 2/5	b=3
@@ -27,14 +33,6 @@ p/q = 1/4	b=1
 
 ===================
 
-p0001 = 1 % 15
-p0010 = 2 % 15
-
-hub:
-0001p0010 = 17 % 240
-0001p0100 = 19 % 240
-0001p1000 = 23 % 240
-0010p0001 = 31 % 240
 
 
 
@@ -111,7 +109,15 @@ char *LeftShift(char *sIn, int n){
 } 
 
 
-// find q angles of rays landing on the Misiurewicz point of the wake p/q
+/* 
+
+find q angles of rays landing on the Misiurewicz point of the wake p/q
+input wake :
+- wake angle p/q
+- denominator of lower Farey parent of p/q
+- angles : sM sPer
+
+*/
 int MisiurewiczAngles(int p, int q, int b, char *sM, char *sP){
 
 	// sOut = sOutPre(sOutPer)
