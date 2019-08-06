@@ -2,10 +2,11 @@
 # description
 * [paper by Dusa McDuff and Melkana Brakalova](http://web.archive.org/web/20040212012317/http://www.math.stonybrook.edu/~melkana/wise0310.pdf)
 * [wikibooks](https://en.wikibooks.org/wiki/Fractals/Iterations_in_the_complex_plane/wake)
-
+* [ Geometry of the Antennas in the Mandelbrot Set by R L Devaney and M Moreno-Rocha, April 11, 2000](http://math.bu.edu/people/bob/papers/monica.pdf)
 
 
 # files
+* [b.hs](b.hs) Haskell code by  Claude Heiland-Allen which does all !!!!
 * [w.c](w.c) 
 * [p.cpp](p.cpp)
 * [f.c](f.c) - Farey parents using int in c 
