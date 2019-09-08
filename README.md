@@ -13,6 +13,20 @@ Compute q angles of the external rays that land the principal Misiurewicz point 
 * [ Geometry of the Antennas in the Mandelbrot Set by R L Devaney and M Moreno-Rocha, April 11, 2000](http://math.bu.edu/people/bob/papers/monica.pdf)
 
 
+#notation
+
+Extarnal angle as an infinite  [binary fraction](https://en.wikibooks.org/wiki/Fractals/Mathematics/binary):  
+ 
+$`\theta = b_0.b_1 b_2 b_3\dots = \sum_{i=0}^\infty \frac{b_i}{2^i} = \frac{b_0}{2^0} + \frac{b_1}{2^1}  + \frac{b_2}{2^2} +\frac{b_3}{2^3}  + \dots `$  
+
+Infinite periodic binary fraction  
+
+$`\theta_{-} = b_0.(b_1 b_2 \dots b_{q-1} b_{q} =  `$  
+
+Infinite preperic binary fraction  
+
+
+
 
 
 # steps
