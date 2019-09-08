@@ -17,11 +17,11 @@ Compute q angles of the external rays that land the principal Misiurewicz point 
 
 Extarnal angle as an infinite  [binary fraction](https://en.wikibooks.org/wiki/Fractals/Mathematics/binary):  
  
-$`\theta = b_0.b_1 b_2 b_3\dots = \frac{b_0}{2^0} + \frac{b_1}{2^1}  + \frac{b_2}{2^2} +\frac{b_3}{2^3}  + \dots = \sum_{i=0}^\infty \frac{b_i}{2^i} `$  
+$`\theta = 0.b_1 b_2 b_3\dots = \frac{b_1}{2^1}  + \frac{b_2}{2^2} +\frac{b_3}{2^3}  + \dots = \sum_{i=1}^\infty \frac{b_i}{2^i} `$  
 
 Infinite periodic binary fraction  
 
-$`\theta_{-} = b_0.(b_1 b_2 \dots b_{q-1} b_{q}) =  `$  
+$`\theta_{-} = 0.(b_1 b_2 \dots b_{q-1} b_{q}) =  `$  
 
 Infinite preperic binary fraction  
 
@@ -47,7 +47,7 @@ Symbolic names of the angles:
 
 ## substeps or procedures
 * compute b = denominator of a/b, which is a smaller Farey parent of p/q. (it is needed for computing Misiurewicz angles)
-* 
+* convert (pre)periodic binary string to decimal fraction 
 
 
 
