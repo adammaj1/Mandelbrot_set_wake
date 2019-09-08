@@ -1,3 +1,11 @@
+# Task
+
+Compute q angles of the external rays that land the principal Misiurewicz point of the p/q wake of the Mandelbrot set for the complex quadratic map
+
+
+
+
+
 
 # description
 * [paper by Dusa McDuff and Melkana Brakalova](http://web.archive.org/web/20040212012317/http://www.math.stonybrook.edu/~melkana/wise0310.pdf)
@@ -9,10 +17,13 @@
 
 # steps
 * input = p/q 
-* compute 2 periodic angles  of the wake ( period = q)
-* compute q preperiodic angles of principal Misiurewicz point of the wake p/q
+* compute 2 periodic angles  of the wake ( period = q): 
+  * 0.(s_)
+  * 0.(s+)
+* compute q preperiodic angles of rays that land on the principal Misiurewicz point of the wake p/q
 
-## procedures
+
+## substeps or procedures
 * compute denominator of smaller Farey parent of p/q
 * 
 
