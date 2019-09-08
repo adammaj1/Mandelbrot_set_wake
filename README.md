@@ -17,14 +17,22 @@ Compute q angles of the external rays that land the principal Misiurewicz point 
 
 # steps
 * input = p/q 
-* compute 2 periodic angles  of the wake ( period = q): 
+* compute 2 periodic angles  of the wake ( period = length of the periodic pattern = q): 
   * 0.(s_)
   * 0.(s+)
-* compute q preperiodic angles of rays that land on the principal Misiurewicz point of the wake p/q
+* compute q preperiodic angles of rays that land on the principal Misiurewicz point of the wake p/q from 2 previous angles
+  * the lowest angle of Misiureiwcz point is 0.s-(s+)
+  * the highest angle of Misiureiwcz point is 0.s+(s-)
+  * the rest (q-2) angles are computed using binary shift of b digits 
+
+
+Symbolic names of the angles: 
+
+![](mis1over3_600.png)
 
 
 ## substeps or procedures
-* compute denominator of smaller Farey parent of p/q
+* compute b = denominator of a/b, which is a smaller Farey parent of p/q. (it is needed for computing Misiurewicz angles)
 * 
 
 
