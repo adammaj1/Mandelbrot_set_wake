@@ -47,7 +47,8 @@ Symbolic names of the angles:
 
 ## substeps or procedures
 * compute b = denominator of a/b, which is a smaller Farey parent of p/q. (it is needed for computing Misiurewicz angles)
-* convert (pre)periodic binary string to decimal fraction 
+* convert (pre)periodic binary string to decimal fraction:
+  * [geometric series method](https://en.wikibooks.org/wiki/Fractals/Mathematics/Numbers#Geometric_series) 
 
 
 
