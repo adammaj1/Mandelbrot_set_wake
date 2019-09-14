@@ -30,7 +30,7 @@ Infinite preperic binary fraction
 
 
 # steps
-* input = p/q 
+* input = p/q ( angle of the wake as a ratio of decimal integers in the lowest form)
 * compute 2 periodic angles  of the wake ( period = length of the periodic pattern = q): 
   * 0.(s_)
   * 0.(s+)
@@ -38,6 +38,15 @@ Infinite preperic binary fraction
   * the lowest angle of Misiureiwcz point is 0.s-(s+)
   * the highest angle of Misiureiwcz point is 0.s+(s-)
   * the rest (q-2) angles are computed using binary shift of b digits 
+  
+  
+# to do  
+* compute q-1 angles of the tips ( ends of arms)
+* compute sequence of angles ending at [the Feigenbaum point](https://en.wikipedia.org/wiki/Feigenbaum_constants)
+* compute c values of :
+  * root point 
+  * principal Misiurewicz point
+  * root point of main satellite of the arm
 
 
 Symbolic names of the angles: 
