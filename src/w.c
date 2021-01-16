@@ -42,7 +42,22 @@ external angle as a binary rational (string) : 100101001001010010100100101001001
 external angle as a binary floating number in exponential form =0.10010100100101001010010010100100101001010010010100101001001010010010100101001001010010010100101001001010010100100101001001010010100100101001010010010100100101001010010010100100101001010010010100101001*2^-1
 external angle as a binary floating number in periodic form =0.(01001010010010100101001001010010010100101001001010010100100101001001010010100100101001001)
 
-                                                             .(01001010010010100101001001010010010100101001001010010100100101001001010010100100101001001)
+----------------------------------------------------------
+
+uiIADenominator = 31 
+Using MPFR-4.0.1 with GMP-6.1.1 with precision = 200 bits 
+internal angle = 1/31
+first external angle : 
+period = denominator of internal angle = 31
+external angle as a decimal fraction = 1/2147483647 = 1 /( 2^31 - 1) 
+External Angle as a floating point decimal number =  4.6566128752457969241057508271679984532147638747537340385623900399147124035218327351773467491518412546164991452584040446332679803851633049696400990590800086037362649120721624917962344625266268849372863e-10
+external angle as a binary rational (string) : 1/1111111111111111111111111111111 
+external angle as a binary floating number in exponential form =0.10000000000000000000000000000001000000000000000000000000000000100000000000000000000000000000010000000000000000000000000000001000000000000000000000000000000100000000000000000000000000000010000000000000*2^-30
+external angle as a binary floating number in periodic form =0.(0000000000000000000000000000001)
+
+------------------------------------------------------------
+
+
 
 */
 
@@ -217,7 +232,7 @@ int main ()
 
 
         
-        char *sqdInternalAngle = "13/34";
+        char *sqdInternalAngle = "1/31";
         mpq_t qdInternalAngle;   // internal angle = rational number q = n/d
         mpz_t den;  
         unsigned long int uiIADenominator;
@@ -228,7 +243,7 @@ int main ()
         mpfr_t  fdExternalAngle ;  // 
         char  *sfbExternalAngle; // 
         
-        mp_exp_t exponent ; // holds the exponent for the result string
+        mp_exp_t exponent ; // holds the exponent for the result string ( EA)
         mpz_t zdEANumerator;
         mpz_t zdEADenominator;
         mpfr_t EANumerator;
@@ -291,6 +306,19 @@ int main ()
         // mpfr_get_str (char *str, mpfr_exp_t *expptr, int b, size_t n, mpfr_t op, mpfr_rnd_t rnd)
         if (sfbExternalAngle==NULL ) {printf("sfbExternalAngle error \n"); return 1;}
         mpfr_get_str(sfbExternalAngle, &exponent, 2,200, fdExternalAngle, GMP_RNDN);
+        
+        
+        
+        // principal Misiurewicz point of the wake is a landing point of the angle : nm/dm
+        // nm = dw+2; where zdEADenominator;
+        // dm = (2^r)*(2^r - 1) ; precision = log2(dm) = 2*r where r = denominator if internal angle 
+        
+        
+        
+        
+        
+        
+        
 
         // print
         gmp_printf ("internal angle = %Qd\n", qdInternalAngle); // 
