@@ -52,7 +52,7 @@ Infinite preperic binary fraction
 
 Symbolic names of the angles: 
 
-![](mis1over3_600.png)
+![](./images/mis1over3_600.png)
 
 
 ## substeps or procedures
@@ -65,28 +65,28 @@ Symbolic names of the angles:
 
 
 # files
-* [i.c](i.c) c odde to check fraction irreducebility
-* [b.hs](b.hs) Haskell code by  Claude Heiland-Allen which does all !!!!
-* [w.c](w.c) 
-* [p.cpp](p.cpp)
-* [f.c](f.c) - Farey parents using int in c 
-* [a list of Farye parents up to 100](farey_parents100.txt)
-* [ft.c](ft.c) - c program for creating a list of values {p,q,b} for testing shift map
-* [fp30.txt](fp30.txt) - result of [ft.c](ft.c), it will be used by another program [t.c](t.c)
-* [t.c](t.c) - c program for computing angles of the external rays of Misiurewicz points, only in symbolic form
-* [mis30.txt](mis30.txt) - result of [t.c](t.c) = angles of the external rays of Misiurewicz points, only in symbolic form
-* [s.c](s.c) - binare left shift map  in c 
+* [i.c](./src/i.c) c odde to check fraction irreducebility
+* [b.hs](./src/b.hs) Haskell code by  Claude Heiland-Allen which does all !!!!
+* [w.c](./src/w.c) 
+* [p.cpp](./src/p.cpp)
+* [f.c](./src/f.c) - Farey parents using int in c 
+* [a list of Farye parents up to 100](./src/farey_parents100.txt)
+* [ft.c](./src/ft.c) - c program for creating a list of values {p,q,b} for testing shift map
+* [fp30.txt](./src/fp30.txt) - result of [ft.c](ft.c), it will be used by another program [t.c](t.c)
+* [t.c](./src/t.c) - c program for computing angles of the external rays of Misiurewicz points, only in symbolic form
+* [mis30.txt](./src/mis30.txt) - result of [t.c](t.c) = angles of the external rays of Misiurewicz points, only in symbolic form
+* [s.c](./src/s.c) - binare left shift map  in c 
 * c program for computing q angles rays landing on the principal Misurewicz point of the wake p/q
-  * [prep.c](prep.c) - old code
-  * [principal.c](principal.c) - new code
-  * [34_89.txt](34_89.txt) result for 34/89
+  * [prep.c](./src/prep.c) - old code
+  * [principal.c](./src/principal.c) - new code
+  * [34_89.txt](./src/34_89.txt) result for 34/89
   
   
   
   
 # irreducible fractions 
 
-Computed using [i.c program](i.c) 
+Computed using [i.c program](./src/i.c) 
 
 ```
 n/d = 1/2
@@ -291,10 +291,10 @@ Farey parents (7/10) = 2/3  and  5/7		2/3 < 7/10 < 5/7 	 0.6666666666666666 < 0.
 Farey parents (9/10) = 8/9  and  1/1		8/9 < 9/10 < 1/1 	 0.8888888888888888 < 0.9000000000000000 < 1.0000000000000000 
 ```
 
-Here is [a list up to 100](farey_parents100.txt)
+Here is [a list up to 100](./src/farey_parents100.txt)
                                                             
 ## angles of wake 1/n and principal misiurewicz points using cpp and unsigned long long int
-made with [p.cpp](p.cpp)
+made with [p.cpp](./src/p.cpp)
 
 
 ```bash
@@ -490,8 +490,8 @@ See also:
 
 
 Files
-* [t.c](t.c) - c program for computing angles of the external rays of Misiurewicz points, only in symbolic form
-* [mis30.txt](mis30.txt) - result of [t.c](t.c) = angles of the external rays of Misiurewicz points, only in symbolic form
+* [t.c](./src/t.c) - c program for computing angles of the external rays of Misiurewicz points, only in symbolic form
+* [mis30.txt](./src/mis30.txt) - result of [t.c](t.c) = angles of the external rays of Misiurewicz points, only in symbolic form
 
 
 ```bash
@@ -593,9 +593,9 @@ s+(s-)
 # Angles ( in the binary form) of external rays landing on the principal Misiurewicz points of wake p/q 
 
 c program for computing q angles rays landing on the principal Misurewicz point of the wake p/q
-* [prep.c](prep.c) - old code
-* [principal.c](principal.c) - new code
-* [34_89.txt](34_89.txt) result for 34/89
+* [prep.c](./src/prep.c) - old code
+* [principal.c](./src/principal.c) - new code
+* [34_89.txt](./src/34_89.txt) result for 34/89
 
 
 
